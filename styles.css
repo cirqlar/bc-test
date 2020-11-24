@@ -1,6 +1,7 @@
 :root {
   --header-bg-color: #24292e;
   --header-logo-color: #fff;
+  --border-color: rgba(255, 255, 255, 0.15);
 }
 
 * {
@@ -14,6 +15,15 @@ body {
   border: 0;
 }
 
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji;
+  font-size: 14px;
+  line-height: 1.5;
+  /* color: var(--color-text-primary);
+  background-color: var(--color-bg-canvas); */
+}
+
 a {
   text-decoration: none;
 }
@@ -25,6 +35,13 @@ a {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .header-mobile {
+    display: none;
+  }
 }
 
 .header-mobile.closed {
@@ -122,4 +139,112 @@ a {
   position: relative;
   align-self: stretch;
   flex: auto;
+}
+
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.mobile-menu-link {
+  display: block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-top: 1px solid var(--border-color);
+}
+
+.mobile-menu-avi {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1;
+  vertical-align: middle;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--color-avatar-border);
+}
+
+.mobile-sign-out {
+  display: inline-block;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.header-desk {
+  background-color: var(--header-bg-color);
+  padding: 16px 24px;
+
+  display: none;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .header-desk {
+    display: flex;
+  }
+}
+
+.header-logo {
+  margin-top: -4px;
+  margin-bottom: -4px;
+}
+
+.desk-nav {
+  flex: auto;
+}
+
+.desk-search {
+  max-width: 272px;
+  transition: 0.2s ease-in-out;
+  transition-property: max-width, padding-bottom, padding-top;
+
+  margin-right: 16px;
+  position: relative;
+  align-self: auto;
+  flex: auto;
+}
+
+.desk-menu {
+  display: flex;
+}
+
+.menu-link {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin-top: -16px;
+  margin-bottom: -16px;
+  margin-right: 16px;
+}
+
+.header-dropdown {
+  position: relative;
+}
+
+details summary::-webkit-details-marker {
+  display:none;
+}
+
+.dropdown-details > summary {
+  display: list-item;
+  list-style: none;
+}
+
+.details-plus {
+  display: inline-block;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.downward-caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  content: "";
+  border-top-style: solid;
+  border-top-width: 4px;
+  border-right: 4px solid transparent;
+  border-bottom: 0 solid transparent;
+  border-left: 4px solid transparent;
 }
