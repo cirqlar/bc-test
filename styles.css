@@ -231,6 +231,10 @@ details summary::-webkit-details-marker {
   display: none;
 }
 
+details summary {
+  cursor: pointer;
+}
+
 .dropdown-details > summary {
   display: list-item;
   list-style: none;
