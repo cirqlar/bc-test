@@ -2,6 +2,7 @@
   --header-bg-color: #24292e;
   --header-logo-color: #fff;
   --border-color: rgba(255, 255, 255, 0.15);
+  --header-link-hover: rgb(255, 255, 255, 70%);
 }
 
 * {
@@ -82,6 +83,12 @@ a {
   font-weight: 600;
   color: var(--header-logo-color);
   white-space: nowrap;
+}
+
+.header-link:hover,
+.header-link:focus {
+  color: var(--header-link-hover);
+  text-decoration: none;
 }
 
 .header-menu-icon {
@@ -176,7 +183,6 @@ a {
   display: none;
   align-items: center;
   flex-wrap: wrap;
-  overflow: hidden;
 }
 
 @media (min-width: 768px) {
@@ -222,7 +228,7 @@ a {
 }
 
 details summary::-webkit-details-marker {
-  display:none;
+  display: none;
 }
 
 .dropdown-details > summary {
@@ -236,6 +242,72 @@ details summary::-webkit-details-marker {
   fill: currentColor;
 }
 
+.details-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
+  z-index: 100;
+  width: 160px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-top: 2px;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+}
+
+.details-menu::before {
+  position: absolute;
+  display: inline-block;
+  content: "";
+  border: 8px solid transparent;
+  border-bottom: 8px solid #e1e4e8;
+  top: -16px;
+  right: 9px;
+  left: auto;
+}
+
+.details-menu-divider {
+  display: block;
+  height: 0;
+  margin: 8px 0;
+  border-top: 1px solid #e1e4e8;
+}
+
+.details-item {
+  display: block;
+  padding: 4px 8px 4px 16px;
+  overflow: hidden;
+  color: #24292e;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.details-item:hover,
+.details-item:focus {
+  color: #fff;
+  text-decoration: none;
+  background-color: #0366d6;
+  outline: none;
+}
+
+.current-user {
+  padding-bottom: 0;
+  font-size: inherit;
+}
+
+.user-link {
+  display: block;
+  color:  #24292e;
+  padding: 8px 16px;
+  margin-top: -4px;
+  margin-bottom: -8px;
+}
+
 .downward-caret {
   display: inline-block;
   width: 0;
@@ -247,4 +319,8 @@ details summary::-webkit-details-marker {
   border-right: 4px solid transparent;
   border-bottom: 0 solid transparent;
   border-left: 4px solid transparent;
+}
+
+details:not([open]) > :not(summary) {
+  display: none;
 }

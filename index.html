@@ -9,7 +9,7 @@
   </head>
   <body>
     <!-- Mobile header -->
-    <header class="header-mobile">
+    <header class="header-mobile closed">
       <div class="header-mobile-item">
         <button id="menu-button" class="header-menu-button header-link">
           <svg height="24" class="header-menu-icon" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true">
@@ -143,10 +143,18 @@
             </svg>
             <span class="downward-caret"></span>
           </summary>
+
+          <details-menu class="details-menu">
+            <a href="https://github.com/new" class="details-item">New repository</a>
+            <a href="https://github.com/new/import" class="details-item">Import repository</a>
+            <a href="https://gist.github.com/" class="details-item">New gist</a>
+            <a href="https://github.com/organizations/new" class="details-item">New organization</a>
+            <a href="https://github.com/new/project" class="details-item">New project</a>
+          </details-menu>
         </details>
       </div>
       <div class="header-mobile-item header-dropdown header-mobile-last">
-        <details class="dropdown-details">
+        <details class="dropdown-details" open>
           <summary class="header-link">
             <img
               class="mobile-menu-avi"
@@ -157,6 +165,27 @@
             />
             <span class="downward-caret"></span>
           </summary>
+          
+          <details-menu class="details-menu">
+            <div class="current-user">
+              <a href="https://github.com/cirqlar" class="user-link">
+                Signed in as <strong>cirqlar</strong>
+              </a>
+            </div>
+            <div class="details-menu-divider"></div>
+            <div class="details-menu-divider"></div>
+            <a href="https://github.com/cirqlar" class="details-item">Your profile</a>
+            <a href="https://github.com/cirqlar?tab=repositories" class="details-item">Your repositories</a>
+            <a href="https://github.com/settings/organizations" class="details-item">Your organizations</a>
+            <a href="https://github.com/cirqlar?tab=projects" class="details-item">Your projects</a>
+            <a href="https://github.com/cirqlar?tab=stars" class="details-item">Your stars</a>
+            <a href="https://gist.github.com/mine" class="details-item">Your gists</a>
+            <div class="details-menu-divider"></div>
+            <a href="https://github.com" class="details-item">Feature preview</a>
+            <a href="https://docs.github.com/" class="details-item">Help</a>
+            <a href="https://github.com/settings/profile" class="details-item">Settings</a>
+            <a href="https://github.com" class="details-item">Sign out</a>
+          </details-menu>
         </details>
       </div>
     </header>
