@@ -24,6 +24,11 @@ a {
 
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.header-mobile.closed {
+  height: 64px;
 }
 
 .header-mobile-item {
@@ -97,4 +102,24 @@ a {
   background-clip: padding-box;
   border: 2px solid var(--header-bg-color);
   border-radius: 50%;
+}
+
+.header-mobile-menu {
+  width: 100%;
+  order: 2;
+  flex-direction: column;
+  margin-right: 0;
+  margin-top: 16px;
+  flex: auto;
+}
+
+.mobile-search {
+  max-width: 100%;
+  transition: 0.2s ease-in-out;
+  transition-property: max-width, padding-bottom, padding-top;
+
+  margin-bottom: 16px;
+  position: relative;
+  align-self: stretch;
+  flex: auto;
 }
