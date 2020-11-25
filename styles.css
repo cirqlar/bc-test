@@ -102,6 +102,7 @@ a {
   font-weight: 600;
   color: var(--header-logo-color);
   white-space: nowrap;
+  outline: none;
 }
 
 .header-link:hover,
@@ -195,6 +196,10 @@ a {
   fill: currentColor;
 }
 
+.mobile-sign-out-link {
+  padding-left: 2px;
+}
+
 .header-desk {
   background-color: var(--header-bg-color);
   padding: 16px 24px;
@@ -228,6 +233,62 @@ a {
   position: relative;
   align-self: auto;
   flex: auto;
+}
+
+.search-cont {
+  position: relative;
+}
+
+.search-label {
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  border-radius: 6px;
+  outline: none;
+  line-height: 20px;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 0;
+  display: flex;
+
+  width: 100%;
+  max-width: 100%;
+  font-size: inherit;
+  font-weight: 400;
+  color: #fff;
+  vertical-align: middle;
+  background-color: #24292e;
+  border: 1px solid #444d56;
+  box-shadow: none;
+}
+
+.search-input {
+  padding: 5px 12px;
+  vertical-align: middle;
+  border-radius: 6px;
+  outline: none;
+  line-height: 20px;
+
+  display: table-cell;
+  width: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  min-height: 28px;
+}
+
+.search-input::placeholder {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji;
+  color: #BFC1C2;
+}
+
+.search-image {
+  margin-right: 8px;
 }
 
 .desk-menu {
@@ -325,7 +386,7 @@ details summary {
 
 .user-link {
   display: block;
-  color:  #24292e;
+  color: #24292e;
   padding: 8px 16px;
   margin-top: -4px;
   margin-bottom: -8px;
