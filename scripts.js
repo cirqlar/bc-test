@@ -1,7 +1,38 @@
-(function() {
+(async function() {
   "use strict"
 
+  // Run query
+  const query = `
+  query {
+    user(login: "cirqlar") {
+      avatarUrl
+      repositories(first: 20, orderBy: {field: UPDATED_AT, direction:DESC}) {
+        nodes {
+          name
+          parent {
+            nameWithOwner
+          }
+          updatedAt
+          primaryLanguage {
+            color
+            name
+          }
+          shortDescriptionHTML
+          isPrivate
+          isArchived
+          forkCount
+          stargazerCount
+          licenseInfo {
+            name
+          }
+        }
+      }
+    }
+  }
+  `
+
   // get elements
+  const loadingDiv = document.querySelector('.loading');
   const menuButton = document.querySelector('#menu-button');
   const mobileHeader = document.querySelector('.header-mobile');
   const dropdowns = document.querySelectorAll('details.dropdown-details');
@@ -38,4 +69,17 @@
     
     closeDropDowns(event.target);
   })
+
+  // Call Query
+  const result = await fetch("https://api.github.com/graphql", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer 10d0bdc77d482ec54db793323dd384842e2fc860'
+    },
+    body: JSON.stringify({ query: query }),
+  }).then(res => res.json());
+
+  loadingDiv.classList.add("closed");
+  console.log("OMG", result);
 })();
