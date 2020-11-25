@@ -6,11 +6,31 @@
   query {
     user(login: "cirqlar") {
       avatarUrl
+      name
+      followers {
+        totalCount
+      }
+      following {
+        totalCount
+      }
+      bio
+      location
+      email
+      websiteUrl
+      starredRepositories {
+        totalCount
+      }
+      status {
+        emojiHTML
+        message
+      }
       repositories(first: 20, orderBy: {field: UPDATED_AT, direction:DESC}) {
         nodes {
           name
+          url
           parent {
             nameWithOwner
+            url
           }
           updatedAt
           primaryLanguage {
