@@ -466,3 +466,49 @@ details:not([open]) > :not(summary) {
 .status-cont:hover .status-message {
   color: var(--hover-text-blue);
 }
+
+/* footer styles */
+.footer {
+  padding: 0 16px;
+}
+
+.footer-wrapper {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 40px;
+
+  font-size: 12px;
+}
+
+.footer-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  padding: 0;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.footer-item {
+  display: block;
+  margin-right: 16px;
+}
+
+.footer-item:last-child {
+  margin-right: 0;
+}
+
+.footer-link {
+  color: var(--hover-text-blue);
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 544px) {
+  .footer {
+    padding: 0 40px;
+  }
+}
