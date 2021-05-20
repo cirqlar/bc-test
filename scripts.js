@@ -1,10 +1,13 @@
 (async function() {
   "use strict"
 
+  // Universal Variables
+  const USERNAME = "cirqlar";
+
   // Run query
   const query = `
   query {
-    user(login: "cirqlar") {
+    user(login: "${USERNAME}") {
       avatarUrl
       name
       followers {
@@ -14,6 +17,8 @@
         totalCount
       }
       bio
+      login
+      url
       location
       email
       websiteUrl
@@ -57,6 +62,9 @@
   const mobileHeader = document.querySelector('.header-mobile');
   const dropdowns = document.querySelectorAll('details.dropdown-details');
 
+  const attributeBindings = document.querySelectorAll('[data-set]');
+  const contentBindings = document.querySelectorAll('[data-set-content]');
+
   /** 
    * Functions
   */
@@ -91,7 +99,7 @@
   })
 
   // Call Query
-  const result = await fetch("https://api.github.com/graphql", {
+  const { data: { user } } = await fetch("https://api.github.com/graphql", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -100,6 +108,31 @@
     body: JSON.stringify({ query: query }),
   }).then(res => res.json());
 
+  // Update UI
+  const getValueFromKeys = (keys) => keys?.split('.').reduce((object, key) => object[key], user);
+  const getValueWithPattern = (keys, pattern) => {
+    if (pattern) {
+      const value = getValueFromKeys(keys);
+      return pattern.replace(/%%/gi, value);
+    } else {
+      return getValueFromKeys(keys)
+    }
+  }
+
+  attributeBindings.forEach(element => {
+    const [attribute, keys] = element.getAttribute('data-set')?.split("=")
+    const pattern = element.getAttribute('data-set-pattern')
+    const value = getValueWithPattern(keys, pattern);
+    if (attribute && value) element.setAttribute(attribute, value);
+  });
+  
+  contentBindings.forEach(element => {
+    const keys = element.getAttribute('data-set-content');
+    const value = getValueFromKeys(keys);
+    element.innerHTML = value ?? element.getAttribute('data-content-fallback');
+  })
+  
+
   loadingDiv.classList.add("closed");
-  console.log("OMG", result);
+  console.log("OMG", user);
 })();

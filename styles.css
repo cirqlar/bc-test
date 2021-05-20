@@ -3,6 +3,7 @@
   --header-logo-color: #fff;
   --border-color: rgba(255, 255, 255, 0.15);
   --header-link-hover: rgb(255, 255, 255, 70%);
+  --hover-text-blue: #0366D6;
 }
 
 * {
@@ -284,7 +285,7 @@ a {
 .search-input::placeholder {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji,
     Segoe UI Emoji;
-  color: #BFC1C2;
+  color: #bfc1c2;
 }
 
 .search-image {
@@ -375,7 +376,7 @@ details summary {
 .details-item:focus {
   color: #fff;
   text-decoration: none;
-  background-color: #0366d6;
+  background-color: var(--hover-text-blue);
   outline: none;
 }
 
@@ -407,4 +408,61 @@ details summary {
 
 details:not([open]) > :not(summary) {
   display: none;
+}
+
+.status {
+  padding-right: 16px;
+  padding-left: 16px;
+  font-size: 12px;
+  line-height: 1.25;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.status-cont {
+  border: 1px solid #e1e4e8;
+  margin-top: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 6px;
+}
+
+.status-inside {
+  width: 100%;
+  text-align: center;
+
+  display: flex;
+  padding: 0;
+  font-size: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  background-color: initial;
+  border: 0;
+  color: #586069;
+
+  text-decoration: none;
+  list-style: none;
+
+  align-items: stretch
+}
+
+.status-emoji {
+  margin-right: 8px;
+  font-size: 1.25em;
+}
+
+.status-message {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  line-height: 20px;
+
+}
+
+.status-cont:hover .status-message {
+  color: var(--hover-text-blue);
 }
