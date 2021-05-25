@@ -148,11 +148,10 @@
     // Call Query
     const {
       data: { user },
-    } = await fetch("https://api.github.com/graphql", {
+    } = await fetch("https://cirqlar-bc-test.herokuapp.com/graphql", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer 10d0bdc77d482ec54db793323dd384842e2fc860",
       },
       body: JSON.stringify({ query: query }),
     }).then((res) => res.json());
