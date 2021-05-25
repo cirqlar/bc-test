@@ -8,7 +8,20 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="loading">Loading...</div>
+    <div class="first-page" id="first-page">
+      <div class="form-wrapper">
+        <h3>View Github User</h3>
+        <form class="username-form" id="username-form">
+          <label for="username">Username</label>
+          <input type="text" class="username-field" name="username" id="username" />
+
+          <input type="submit" id="username-submit" value="Search" class="btn username-btn btn-block" />
+        </form>
+        <div id="errors">
+          
+        </div>
+      </div>
+    </div>
     <!-- Mobile header -->
     <header class="header-mobile closed">
       <div class="header-mobile-item">

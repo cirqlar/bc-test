@@ -35,7 +35,7 @@ a {
 
 /* Loading */
 
-.loading {
+.first-page {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -50,8 +50,54 @@ a {
   background-color: #fff;
 }
 
-.loading.closed {
+.first-page.closed {
   display: none;
+}
+
+.form-wrapper {
+  font-size: 14px;
+  background-color: #f6f8fa;
+  padding: 20px;
+  border: 1px solid rgb(234, 236, 239);
+  border-radius: 6px;
+
+  width: 100%;
+  max-width: 360px;
+}
+
+.form-wrapper h3 {
+  text-align: center;
+  font-weight: 300;
+  margin: 0 0 16px;
+
+  font-size: 24px;
+}
+
+.username-form label, .username-form input{
+  display: block;
+}
+
+.username-form label {
+  margin-bottom: 7px;
+}
+
+.username-field {
+  font-size: 14px;
+  line-height: 20px;
+  color: #24292e;
+  vertical-align: middle;
+  background-color: #fff;
+  box-shadow: inset 0 1px 0 rgba(225, 228, 232, 0.2);
+  padding: 5px 12px;
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  border-radius: 6px;
+  border: 1px solid rgb(234, 236, 239);
+  outline: none;
+
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 15px;
 }
 
 /* Mobile Header */
@@ -769,6 +815,11 @@ details:not([open]) > :not(summary) {
   padding: 3px 12px;
   font-size: 12px;
   line-height: 20px;
+}
+
+.btn:hover {
+  background-color: #f3f4f6;
+  border-color: #1b1f2326;
 }
 
 .info-follows {
