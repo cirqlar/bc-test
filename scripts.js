@@ -30,6 +30,7 @@
         message
       }
       repositories(first: 20, orderBy: {field: UPDATED_AT, direction:DESC}) {
+        totalCount
         nodes {
           name
           url
@@ -61,6 +62,7 @@
   const menuButton = document.querySelector('#menu-button');
   const mobileHeader = document.querySelector('.header-mobile');
   const dropdowns = document.querySelectorAll('details.dropdown-details');
+  const stickyProfile = document.querySelector('#sticky-profile');
 
   const attributeBindings = document.querySelectorAll('[data-set]');
   const contentBindings = document.querySelectorAll('[data-set-content]');
@@ -97,6 +99,20 @@
     
     closeDropDowns(event.target);
   })
+
+  let scrollTop = 0;
+
+  window.addEventListener('scroll', (event) => {
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  });
+
+  setInterval(() => {
+    if (scrollTop >= 270) {
+      stickyProfile.classList.add('is-shown')
+    } else {
+      stickyProfile.classList.remove('is-shown');
+    }
+  }, 100);
 
   // Call Query
   const { data: { user } } = await fetch("https://api.github.com/graphql", {
