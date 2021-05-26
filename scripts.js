@@ -1,34 +1,74 @@
 (async function () {
   "use strict";
 
+  // Set up Username form
   const firstPage = document.querySelector("#first-page");
-  const form = document.querySelector('#username-form');
-  const formButton = document.querySelector('#username-submit');
+  const form = document.querySelector("#username-form");
+  const formButton = document.querySelector("#username-submit");
   const usernameInput = document.querySelector('input[name="username"]');
-  const errors = document.querySelector('#errors');
+  const errors = document.querySelector("#errors");
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    firstPage.classList.add('loading');
+    firstPage.classList.add("loading");
     formButton.disabled = true;
     formButton.value = "Loading...";
+    errors.textContent = "";
 
     try {
-      if (!usernameInput.value) throw new Error("Username is requried");
+      if (!usernameInput.value) throw new Error("Username is required");
       await generatePage(usernameInput.value);
-    } catch (e) {
-      firstPage.classList.remove('loading');
+
+      firstPage.classList.remove("loading");
       formButton.disabled = false;
       formButton.value = "Search";
-      const errorMessage = document.createElement('p');
+    } catch (e) {
+      const errorMessage = document.createElement("p");
       errorMessage.textContent = e.message ?? "Somethings gone wrong";
       errors.appendChild(errorMessage);
+
+      firstPage.classList.remove("loading");
+      formButton.disabled = false;
+      formButton.value = "Search";
 
       return;
     }
 
     firstPage.classList.add("closed");
-  })
+  });
+
+  // Set up menus and dropdowns
+  const menuButton = document.querySelector("#menu-button");
+  const mobileHeader = document.querySelector(".header-mobile");
+  const dropdowns = document.querySelectorAll("details.dropdown-details");
+
+  // Open and close header
+  function toggleHeaderOpen() {
+    if (mobileHeader.classList.contains("closed")) {
+      mobileHeader.classList.remove("closed");
+    } else {
+      mobileHeader.classList.add("closed");
+    }
+  }
+
+  // Close dropdowns
+  function closeDropDowns(el) {
+    for (const dropdown of dropdowns) {
+      if (!dropdown.contains(el)) {
+        dropdown.removeAttribute("open");
+      }
+    }
+  }
+
+  // Add events
+  menuButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    toggleHeaderOpen();
+  });
+
+  document.addEventListener("click", function (event) {
+    closeDropDowns(event.target);
+  });
 
   async function generatePage(username) {
     // Run query
@@ -46,9 +86,6 @@
       bio
       login
       url
-      location
-      email
-      websiteUrl
       starredRepositories {
         totalCount
       }
@@ -89,48 +126,8 @@
   }
   `;
 
-    // get elements
-    const menuButton = document.querySelector("#menu-button");
-    const mobileHeader = document.querySelector(".header-mobile");
-    const dropdowns = document.querySelectorAll("details.dropdown-details");
+    // Set up profile card scroll listener
     const stickyProfile = document.querySelector("#sticky-profile");
-    const reposList = document.querySelector("#repos-list");
-
-    const attributeBindings = document.querySelectorAll("[data-set]");
-    const contentBindings = document.querySelectorAll("[data-set-content]");
-
-    /**
-     * Functions
-     */
-
-    // Open and close header
-    function toggleHeaderOpen() {
-      if (mobileHeader.classList.contains("closed")) {
-        mobileHeader.classList.remove("closed");
-      } else {
-        mobileHeader.classList.add("closed");
-      }
-    }
-
-    // Close dropdowns
-    function closeDropDowns(el) {
-      for (const dropdown of dropdowns) {
-        if (!dropdown.contains(el)) {
-          dropdown.removeAttribute("open");
-        }
-      }
-    }
-
-    // Add events
-    menuButton.addEventListener("click", function (event) {
-      event.preventDefault();
-      toggleHeaderOpen();
-    });
-
-    document.addEventListener("click", function (event) {
-      closeDropDowns(event.target);
-    });
-
     let scrollTop = 0;
 
     window.addEventListener("scroll", (event) => {
@@ -157,11 +154,11 @@
     }).then((res) => res.json());
 
     if (!user) {
-      throw new Error("Username not found");
+      throw new Error("User not found");
     }
 
     // Update UI
-    const getValueFromKeys = (keys) => keys?.split(".").reduce((object, key) => object[key] ?? ({}), user);
+    const getValueFromKeys = (keys) => keys?.split(".").reduce((object, key) => object[key] ?? {}, user);
     const getValueWithPattern = (keys, pattern) => {
       if (pattern) {
         const value = getValueFromKeys(keys);
@@ -171,21 +168,27 @@
       }
     };
 
+    // Add attribute bindings
+    const attributeBindings = document.querySelectorAll("[data-set]");
     attributeBindings.forEach((element) => {
       const [attribute, keys] = element.getAttribute("data-set")?.split("=");
       const pattern = element.getAttribute("data-set-pattern");
       let value = getValueWithPattern(keys, pattern);
-      if (typeof value === 'object') value = null;
+      if (typeof value === "object") value = null;
       if (attribute && value) element.setAttribute(attribute, value);
     });
 
+    // Add content bindings
+    const contentBindings = document.querySelectorAll("[data-set-content]");
     contentBindings.forEach((element) => {
       const keys = element.getAttribute("data-set-content");
       let value = getValueFromKeys(keys);
-      if (typeof value === 'object') value = null;
+      if (typeof value === "object") value = null;
       element.innerHTML = value ?? element.getAttribute("data-content-fallback");
     });
 
+    // Build repositories list
+    const reposList = document.querySelector("#repos-list");
     user?.repositories?.nodes?.forEach((repo) => {
       // Generate repo info node
       const repoInfo = document.createElement("div");

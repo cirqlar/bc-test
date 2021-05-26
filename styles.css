@@ -33,6 +33,47 @@ a {
   text-decoration: none;
 }
 
+/* button */
+.btn {
+  position: relative;
+  display: inline-block;
+  font: inherit;
+  padding: 5px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid;
+  border-radius: 6px;
+  appearance: none;
+
+  color: #24292e;
+  background-color: #fafbfc;
+  border-color: rgb(27, 31, 35, 0.15);
+  box-shadow: 0 1px 0 rgba(27,31,35,0.04),inset 0 1px 0 hsla(0, 0%, 100%, 0.25);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+  appearance: button;
+}
+
+.btn-sm {
+  padding: 3px 12px;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.btn:hover {
+  background-color: #f3f4f6;
+  border-color: #1b1f2326;
+}
+
 /* Loading */
 
 .first-page {
@@ -98,6 +139,31 @@ a {
   width: 100%;
   margin-top: 5px;
   margin-bottom: 15px;
+}
+
+.username-btn {
+  color: #fff;
+  background-color: #2ea44f;
+  border-color: #1b1f2326;
+}
+
+.username-btn:hover {
+  background-color: #2c974b;
+  border-color: #1b1f2326;
+}
+
+.username-btn:disabled {
+  color: #ffffffcc;
+  background-color: #94d3a2;
+  border-color: #1b1f231a;
+}
+
+.errors p {
+  background-color: #ffe3e6;
+  color: #586069;
+  margin: 20px 0 10px;
+  padding: 8px 16px;
+  border-radius: 6px;
 }
 
 /* Mobile Header */
@@ -780,46 +846,6 @@ details:not([open]) > :not(summary) {
 
 .info-edit {
   margin-bottom: 16px;
-}
-
-.btn {
-  position: relative;
-  display: inline-block;
-  font: inherit;
-  padding: 5px 16px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  user-select: none;
-  border: 1px solid;
-  border-radius: 6px;
-  appearance: none;
-
-  color: #24292e;
-  background-color: #fafbfc;
-  border-color: rgb(27, 31, 35, 0.15);
-  box-shadow: 0 1px 0 rgba(27,31,35,0.04),inset 0 1px 0 hsla(0, 0%, 100%, 0.25);
-}
-
-.btn-block {
-  display: block;
-  width: 100%;
-  text-align: center;
-  appearance: button;
-}
-
-.btn-sm {
-  padding: 3px 12px;
-  font-size: 12px;
-  line-height: 20px;
-}
-
-.btn:hover {
-  background-color: #f3f4f6;
-  border-color: #1b1f2326;
 }
 
 .info-follows {
