@@ -12,17 +12,23 @@
     firstPage.classList.add('loading');
     formButton.disabled = true;
     formButton.value = "Loading...";
+    errors.textContent = '';
 
     try {
-      if (!usernameInput.value) throw new Error("Username is requried");
+      if (!usernameInput.value) throw new Error("Username is required");
       await generatePage(usernameInput.value);
-    } catch (e) {
+
       firstPage.classList.remove('loading');
       formButton.disabled = false;
       formButton.value = "Search";
+    } catch (e) {
       const errorMessage = document.createElement('p');
       errorMessage.textContent = e.message ?? "Somethings gone wrong";
       errors.appendChild(errorMessage);
+
+      firstPage.classList.remove('loading');
+      formButton.disabled = false;
+      formButton.value = "Search";
 
       return;
     }
