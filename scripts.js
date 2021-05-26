@@ -52,9 +52,6 @@
       bio
       login
       url
-      location
-      email
-      websiteUrl
       starredRepositories {
         totalCount
       }
